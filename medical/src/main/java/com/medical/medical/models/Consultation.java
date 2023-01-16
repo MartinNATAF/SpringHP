@@ -15,8 +15,11 @@ public class Consultation implements Serializable {
     private String tarif;
     @Column(name = "ordonance")
     private String ordonance;
-    @ManyToOne @JoinColumn(name="idRdv", nullable=false)
+    @OneToOne @JoinColumn(name="idRdv", nullable=false)
     private Rdv rdv;
+
+    public Consultation() {
+    }
 
     public Consultation(String tarif, String ordonance, Rdv rdv) {
         this.tarif = tarif;

@@ -18,6 +18,11 @@ public class Medecin implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_medecin;
     
+    public Long getId_medecin() {
+        return id_medecin;
+    }
+
+
     @Column(name = "nom_medecin")
     private String nom_medecin;
     public String getNom_medecin() {
@@ -92,16 +97,20 @@ public class Medecin implements Serializable {
 
 
     @OneToMany( targetEntity=Rdv.class, mappedBy="medecin" )
-    private List<Rdv> rdvs = new ArrayList<>();
+    private List<Rdv> rdv = new ArrayList<>();
 
-    @JsonIgnore
-    public List<Rdv> getRdvs() {
-        return rdvs;
+    public Medecin() {
     }
 
 
-    public void setRdvs(List<Rdv> rdvs) {
-        this.rdvs = rdvs;
+    @JsonIgnore
+    public List<Rdv> getRdvs() {
+        return rdv;
+    }
+
+
+    public void setRdvs(List<Rdv> rdv) {
+        this.rdv = rdv;
     }
 
 

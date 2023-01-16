@@ -1,5 +1,7 @@
 package com.medical.medical.service;
 
+import com.medical.medical.DAO.MedecinDAO;
+import com.medical.medical.DAO.PatientDAO;
 import com.medical.medical.DAO.RdvDAO;
 import com.medical.medical.models.Rdv;
 
@@ -35,14 +37,16 @@ public class RdvServiceImpl implements RdvService{
     }
     @Override
     public Rdv saveRdv(Rdv Rdv){
-        //Rdv _Rdv = new Rdv();
-        //_Rdv.setTitle(Rdv.getTitle());
-        //_Rdv.setAuthor(Rdv.getAuthor());
-        //_Rdv.setPrice(Rdv.getPrice());
-        //_Rdv.setCategory();
-        //RdvDAO.save(_Rdv);
-        //return _Rdv;
-        return RdvDAO.save(Rdv); // plus rapide mais bon...
+        Rdv rdvtest = new Rdv();
+        rdvtest.setDate_rdv(Rdv.getDate_rdv());
+        System.out.println("A");
+        rdvtest.setHeure_rdv(Rdv.getHeure_rdv());
+        System.out.println("B");
+        rdvtest.setMedecin(Rdv.getMedecin());
+        System.out.println("C");
+        rdvtest.setPatient(Rdv.getPatient());
+        System.out.println("D");
+        return RdvDAO.save(rdvtest);
     }
 
     @Override

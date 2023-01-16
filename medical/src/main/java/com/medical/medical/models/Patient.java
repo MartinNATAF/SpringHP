@@ -1,5 +1,6 @@
 package com.medical.medical.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.*;
 import java.util.ArrayList;
@@ -15,6 +16,10 @@ public class Patient implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id_patient;
+    public Long getId_patient() {
+        return id_patient;
+    }
+
     @Column(name = "nom_patient")
     private String nom_patient;
     @Column(name = "prnm_patient")
@@ -27,7 +32,19 @@ public class Patient implements Serializable {
     private String tel_patient;
 
     @OneToMany( targetEntity=Rdv.class, mappedBy="patient" )
-    private List<Rdv> rdvs = new ArrayList<>();
+    private List<Rdv> rdv = new ArrayList<>();
+
+    @JsonIgnore
+    public List<Rdv> getRdvs() {
+        return rdv;
+    }
+
+    public Patient(List<Rdv> rdv) {
+        this.rdv = rdv;
+    }
+
+    public Patient() {
+    }
 
     public Patient(String nom_patient, String prnm_patient, String date_naissance, String adresse_patient,
             String tel_patient) {
@@ -41,6 +58,8 @@ public class Patient implements Serializable {
     public String getTel_patient() {
         return tel_patient;
     }
+
+    
 
     public void setTel_patient(String tel_patient) {
         this.tel_patient = tel_patient;
